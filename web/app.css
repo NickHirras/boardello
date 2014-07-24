@@ -1,0 +1,13 @@
+BODY { 
+    padding-top: 50px;
+    background-color: #aaa;
+}
+
+.clickable, .nav, .pagination, .carousel, .panel-title A, A { 
+    cursor: pointer; 
+}
+
+.unlink, A.unlink {
+    text-decoration: none !important;   
+    color: #080808;
+}
