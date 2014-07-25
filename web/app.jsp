@@ -9,15 +9,15 @@
     <title>Boardello</title>
 
     <!-- Bootstrap -->
-    <link href="../lib/bootstrap-3.2.0-dist/css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/lib/bootstrap-3.2.0-dist/css/bootstrap-cerulean.min.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
-          <script src="../lib/html5shiv-3.7.0/html5shiv.js"></script>
-          <script src="../lib/respond.js-1.4.2/respond.min.js"></script>
+          <script src="<%=request.getContextPath()%>/lib/html5shiv-3.7.0/html5shiv.js"></script>
+          <script src="<%=request.getContextPath()%>/lib/respond.js-1.4.2/respond.min.js"></script>
         <![endif]-->
 
-    <link href="../app.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" >
+    <link href="<%=request.getContextPath()%>/app.css" rel="stylesheet">
+    <link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" >
 </head>
 <body>
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -57,7 +57,7 @@
                   <li><a href="#">Shortcuts</a></li>
                   <li><a href="#">Share Trello</a></li>
                   <li class="divider"></li>
-                  <li><a href="#">Log Out</a></li>
+                  <li><a href="<%=request.getContextPath()%>/logout">Log Out</a></li>
                 </ul>
               </li>
             </ul>
@@ -74,19 +74,19 @@
     </div>
 
 
-    <script src="../lib/jquery-1.11.1/jquery.min.js"></script>
-    <script src="../lib/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
-    <script src="../lib/angular-1.2.20/angular.js"></script>
-    <script src="../lib/angular-1.2.20/angular-route.js"></script>
-    <script src="../lib/angular-1.2.20/angular-resource.js"></script>
-    <script src="../lib/angular-1.2.20/angular-sanitize.js"></script>
-    <script src="../lib/angular-1.2.20/angular-animate.js"></script>
-    <script src="../lib/ui-bootstrap-0.11.0/ui-bootstrap-tpls-0.11.0.min.js"></script>
-    <script src="../lib/ui-utils-0.1.1/ui-utils.min.js"></script>
-    <script src="../app.js"></script>
-    <script src="../app-controller.js"></script>
-    <script src="../boards/board-list-controller.js"></script>
-    <script src="../boards/board-show-controller.js"></script>
-    <script src="../cards/card-show-controller.js"></script>
+    <script src="<%=request.getContextPath()%>/lib/jquery-1.11.1/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/lib/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+    <script src="<%=request.getContextPath()%>/lib/angular-1.2.20/angular.js"></script>
+    <script src="<%=request.getContextPath()%>/lib/angular-1.2.20/angular-route.js"></script>
+    <script src="<%=request.getContextPath()%>/lib/angular-1.2.20/angular-resource.js"></script>
+    <script src="<%=request.getContextPath()%>/lib/angular-1.2.20/angular-sanitize.js"></script>
+    <script src="<%=request.getContextPath()%>/lib/angular-1.2.20/angular-animate.js"></script>
+    <script src="<%=request.getContextPath()%>/lib/ui-bootstrap-0.11.0/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="<%=request.getContextPath()%>/lib/ui-utils-0.1.1/ui-utils.min.js"></script>
+    <script src="<%=request.getContextPath()%>/app.js"></script>
+    <script src="<%=request.getContextPath()%>/app-controller.js"></script>
+    <script src="<%=request.getContextPath()%>/boards/board-list-controller.js"></script>
+    <script src="<%=request.getContextPath()%>/boards/board-show-controller.js"></script>
+    <script src="<%=request.getContextPath()%>/cards/card-show-controller.js"></script>
 </body>
 </html>
