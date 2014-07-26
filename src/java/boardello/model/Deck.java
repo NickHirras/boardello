@@ -7,12 +7,15 @@
 package boardello.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,9 +32,12 @@ public class Deck implements Serializable {
     private Long id;
     @ManyToOne
     private Board board;
+    @OneToMany
+    private Collection<Card> cards;
     private String name;
     private long position;
 
+    @XmlTransient
     public Board getBoard() {
         return board;
     }
@@ -63,6 +69,16 @@ public class Deck implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Collection<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(Collection<Card> cards) {
+        this.cards = cards;
+    }
+    
+    
 
     @Override
     public int hashCode() {

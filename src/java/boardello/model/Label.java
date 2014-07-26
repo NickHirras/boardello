@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,6 +39,7 @@ public class Label implements Serializable {
         this.id = id;
     }
 
+    @XmlTransient
     public Board getBoard() {
         return board;
     }

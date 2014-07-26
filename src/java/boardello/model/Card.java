@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -43,7 +44,7 @@ public class Card implements Serializable {
     private long position;    
     @OneToMany
     private Collection<Account> members;
-    @OneToMany
+    @ManyToMany
     private Collection<Label> labels;
     @OneToMany
     private Collection<Checklist> checklists;
@@ -98,6 +99,7 @@ public class Card implements Serializable {
         this.dueDate = dueDate;
     }
 
+    @XmlTransient
     public Deck getDeck() {
         return deck;
     }

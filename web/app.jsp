@@ -84,6 +84,7 @@
     <script src="<%=request.getContextPath()%>/lib/ui-bootstrap-0.11.0/ui-bootstrap-tpls-0.11.0.min.js"></script>
     <script src="<%=request.getContextPath()%>/lib/ui-utils-0.1.1/ui-utils.min.js"></script>
     <script src="<%=request.getContextPath()%>/app.js"></script>
+    <script src="<%=request.getContextPath()%>/app-services.js"></script>
     <script src="<%=request.getContextPath()%>/app-controller.js"></script>
     <script src="<%=request.getContextPath()%>/boards/board-list-controller.js"></script>
     <script src="<%=request.getContextPath()%>/boards/board-show-controller.js"></script>

@@ -7,12 +7,14 @@
 package boardello.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,6 +40,32 @@ public class Board implements Serializable {
     private Date lastActivityAt;
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastViewedAt;
+    @OneToMany(mappedBy = "board")
+    private Collection<Deck> decks;
+    @OneToMany(mappedBy =  "board")
+    private Collection<Label> labels;
+
+    public Board() {
+        
+    }
+    
+    public Board(Long id, Account account, String name, String slug, Date lastActivityAt, Date lastViewedAt, Collection<Deck> decks) {
+        this.id = id;
+        this.account = account;
+        this.name = name;
+        this.slug = slug;
+        this.lastActivityAt = lastActivityAt;
+        this.lastViewedAt = lastViewedAt;
+        this.decks = decks;
+    }
+    
+    public Board(Long id, String name, String slug, Date lastActivityAt, Date lastViewedAt) {
+        this.id = id;
+        this.name = name;
+        this.slug = slug;
+        this.lastActivityAt = lastActivityAt;
+        this.lastViewedAt = lastViewedAt;
+    }
     
     public Long getId() {
         return id;
@@ -86,6 +114,22 @@ public class Board implements Serializable {
     public void setLastViewedAt(Date lastViewedAt) {
         this.lastViewedAt = lastViewedAt;
     }     
+
+    public Collection<Deck> getDecks() {
+        return decks;
+    }
+
+    public void setDecks(Collection<Deck> decks) {
+        this.decks = decks;
+    }
+    
+    public Collection<Label> getLabels() {
+        return labels;
+    }
+    
+    public void setLabels(Collection<Label> labels) {
+        this.labels = labels;
+    }
 
     @Override
     public int hashCode() {

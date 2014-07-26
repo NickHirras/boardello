@@ -25,7 +25,6 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nicholas.e.smith
  */
-@WebFilter(filterName = "AppAuthenticationFilter", servletNames = {"app"})
 public class AppAuthenticationFilter implements Filter {
     
     private static final boolean debug = true;

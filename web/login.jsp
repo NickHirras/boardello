@@ -33,6 +33,7 @@
             response.sendRedirect(returnTo);            
         } catch(NoResultException ex) {
             error = "Incorrect email or password.";
+            System.err.println("Could not login email=\"" + email + "\", passwordDigest=\"" + passwordDigest + "\"");
         }
     }
 %>

@@ -23,7 +23,7 @@
 
                 <!-- card -->                
                 <div class="panel panel-default clickable" ng-repeat="card in cards | filter:{listId: list.id} | orderBy: 'position'">
-                    <span ng-repeat="label in card.labels" style="color: {{label.color}}; float: left;" class="glyphicon glyphicon-bookmark"></span>
+                    <span ng-repeat="label in card.labels" style="color: {{label.color}}; float: left; margin-top: -2px;" class="glyphicon glyphicon-bookmark"></span>
                     <a href="c/{{card.id}}/{{card.slug}}" class="unlink">
                         <div class="panel-body">
                             {{card.name}}

@@ -1,10 +1,8 @@
 angular.module('boardello').controller('BoardListController', 
-    ['$scope', '$http', '$log',  '$location',
-    function ($scope, $http, $log, $location) {
+    ['$scope', '$http', '$log',  '$location', 'BoardApi',
+    function ($scope, $http, $log, $location, BoardApi) {
        
-        $scope.toggleStar = function() {
-            alert('I love it!');            
-        }
+        $scope.boards = BoardApi.query();
         
     }]
 );

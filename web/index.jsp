@@ -13,5 +13,7 @@
     </head>
     <body>
         <h1>Marketing WIN!</h1>
+        <a href="app">Launch the app</a><br/>
+        <a href="api/application.wadl">View the API application.wadl</a><br/>
     </body>
 </html>
