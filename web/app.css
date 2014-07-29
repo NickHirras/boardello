@@ -1,6 +1,7 @@
 BODY { 
     padding-top: 50px;
-    background-color: #aaa;
+    //background-color: #aaa;
+    background-color: rgb(35, 113, 159);
 }
 
 .clickable, .nav, .pagination, .carousel, .panel-title A, A { 
@@ -10,4 +11,16 @@ BODY {
 .unlink, A.unlink {
     text-decoration: none !important;   
     color: #080808;
+}
+
+.deck {
+    background-color: #ccc;
+}
+
+.card {
+    background-color: #eaeaea;
+}
+
+.card:hover {
+    background-color: #fff;
 }

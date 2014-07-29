@@ -8,6 +8,7 @@ import boardello.model.Deck;
 import boardello.model.Label;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.ws.rs.GET;
@@ -89,18 +90,26 @@ public class DevService {
         Card invite = new Card();
         invite.setDeck(beginner);
         invite.setName("Invite your team to this board using the Add Members button.");
+        invite.setSlug("invite-your-team-to-this-board-using-the-add-members-button");
         invite.setPosition(1L);
         em.persist(invite);
         
         Card dragPeople = new Card();
         dragPeople.setDeck(beginner);
         dragPeople.setName("Drag people onto a card to indicate they're responsible for it.");
+        dragPeople.setSlug("drag-people-onto-a-card-to-indicate-theyre-responsible-for-it");
         dragPeople.setPosition(2L);
         dragPeople.setLabels(new ArrayList<Label>());
         dragPeople.getLabels().add(red);
         dragPeople.getLabels().add(green);
         em.persist(dragPeople);
         
+        
+        List<Card> begCards = new ArrayList<Card>();
+        begCards.add(invite);
+        begCards.add(dragPeople);
+        beginner.setCards(begCards);
+        em.merge(beginner);
         
         out.append("Commit\n");
         tx.commit();
