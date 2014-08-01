@@ -32,39 +32,16 @@ public class Board implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;    
-    @ManyToOne
-    private Account account;
+    private long accountId;
     private String name;
     private String slug;
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastActivityAt;
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastViewedAt;
-    @OneToMany(mappedBy = "board")
-    private Collection<Deck> decks;
-    @OneToMany(mappedBy =  "board")
-    private Collection<Label> labels;
 
     public Board() {
         
-    }
-    
-    public Board(Long id, Account account, String name, String slug, Date lastActivityAt, Date lastViewedAt, Collection<Deck> decks) {
-        this.id = id;
-        this.account = account;
-        this.name = name;
-        this.slug = slug;
-        this.lastActivityAt = lastActivityAt;
-        this.lastViewedAt = lastViewedAt;
-        this.decks = decks;
-    }
-    
-    public Board(Long id, String name, String slug, Date lastActivityAt, Date lastViewedAt) {
-        this.id = id;
-        this.name = name;
-        this.slug = slug;
-        this.lastActivityAt = lastActivityAt;
-        this.lastViewedAt = lastViewedAt;
     }
     
     public Long getId() {
@@ -74,15 +51,15 @@ public class Board implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    public Account getAccount() {
-        return account;
+
+    public long getAccountId() {
+        return accountId;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccountId(long accountId) {
+        this.accountId = accountId;
     }
-
+ 
     public String getName() {
         return name;
     }
@@ -114,22 +91,6 @@ public class Board implements Serializable {
     public void setLastViewedAt(Date lastViewedAt) {
         this.lastViewedAt = lastViewedAt;
     }     
-
-    public Collection<Deck> getDecks() {
-        return decks;
-    }
-
-    public void setDecks(Collection<Deck> decks) {
-        this.decks = decks;
-    }
-    
-    public Collection<Label> getLabels() {
-        return labels;
-    }
-    
-    public void setLabels(Collection<Label> labels) {
-        this.labels = labels;
-    }
 
     @Override
     public int hashCode() {

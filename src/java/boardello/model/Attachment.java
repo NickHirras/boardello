@@ -26,6 +26,7 @@ public class Attachment implements Serializable {
     private Long id;
     private String url;
     private long position;
+    private long boardId;
 
     public Long getId() {
         return id;
@@ -50,6 +51,16 @@ public class Attachment implements Serializable {
     public void setPosition(long position) {
         this.position = position;
     }
+
+    public long getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(long boardId) {
+        this.boardId = boardId;
+    }
+    
+    
 
     
     @Override

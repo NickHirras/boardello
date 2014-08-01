@@ -30,23 +30,11 @@ public class Deck implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    private Board board;
-    @OneToMany
-    private Collection<Card> cards;
+    private Long boardId;
     private String name;
     private long position;
 
-    @XmlTransient
-    public Board getBoard() {
-        return board;
-    }
-
-    public void setBoard(Board board) {
-        this.board = board;
-    }
-
-    public String getName() {
+   public String getName() {
         return name;
     }
 
@@ -70,15 +58,14 @@ public class Deck implements Serializable {
         this.id = id;
     }
 
-    public Collection<Card> getCards() {
-        return cards;
+    public Long getBoardId() {
+        return boardId;
     }
 
-    public void setCards(Collection<Card> cards) {
-        this.cards = cards;
+    public void setBoardId(Long boardId) {
+        this.boardId = boardId;
     }
-    
-    
+   
 
     @Override
     public int hashCode() {

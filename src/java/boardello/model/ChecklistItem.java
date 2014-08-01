@@ -25,9 +25,9 @@ public class ChecklistItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    private Checklist checklist;
+    private long checklistId;
     private String content;
+    private long position;
     private boolean completed;
     
     public Long getId() {
@@ -36,14 +36,6 @@ public class ChecklistItem implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Checklist getChecklist() {
-        return checklist;
-    }
-
-    public void setChecklist(Checklist checklist) {
-        this.checklist = checklist;
     }
 
     public String getContent() {
@@ -62,6 +54,24 @@ public class ChecklistItem implements Serializable {
         this.completed = completed;
     }
 
+    public long getChecklistId() {
+        return checklistId;
+    }
+
+    public void setChecklistId(long checklistId) {
+        this.checklistId = checklistId;
+    }
+
+    public long getPosition() {
+        return position;
+    }
+
+    public void setPosition(long position) {
+        this.position = position;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

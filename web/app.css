@@ -11,3 +11,32 @@ BODY {
     text-decoration: none !important;   
     color: #080808;
 }
+
+.card {
+}
+
+.card .row {
+    margin: 0 1em 0 1em;
+}
+
+.card .row h1 {
+    color: gray;
+    font-size: 16px;
+}
+
+.card .row h1 .glyphicon {
+    margin-right: 1em;
+}
+
+.card .row p {
+    color: black;
+    font-size: 18px;
+}
+
+.card-stage {
+    box-shadow: 0px 4px 4px 4px #666;
+}
+
+.navbar-fixed-top {
+    box-shadow: 0px 0px 4px 4px #666;
+}

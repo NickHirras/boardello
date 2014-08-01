@@ -9,6 +9,8 @@ package boardello.model;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,17 +41,10 @@ public class Card implements Serializable {
     private String description;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dueDate;
-    @ManyToOne
-    private Deck deck;
     private long position;    
-    @OneToMany
-    private Collection<Account> members;
-    @ManyToMany
-    private Collection<Label> labels;
-    @OneToMany
-    private Collection<Checklist> checklists;
-    @OneToMany
-    private Collection<Attachment> attachments;
+    private long deckId;
+    @ElementCollection
+    private List<Long> labelIds;
     
     public Long getId() {
         return id;
@@ -99,14 +94,6 @@ public class Card implements Serializable {
         this.dueDate = dueDate;
     }
 
-    @XmlTransient
-    public Deck getDeck() {
-        return deck;
-    }
-
-    public void setDeck(Deck deck) {
-        this.deck = deck;
-    }
 
     public long getPosition() {
         return position;
@@ -116,38 +103,25 @@ public class Card implements Serializable {
         this.position = position;
     }
 
-    public Collection<Account> getMembers() {
-        return members;
+    public long getDeckId() {
+        return deckId;
     }
 
-    public void setMembers(Collection<Account> members) {
-        this.members = members;
+    public void setDeckId(long deckId) {
+        this.deckId = deckId;
     }
 
-    public Collection<Label> getLabels() {
-        return labels;
+    public List<Long> getLabelIds() {
+        return labelIds;
     }
 
-    public void setLabels(Collection<Label> labels) {
-        this.labels = labels;
+    public void setLabelIds(List<Long> labelIds) {
+        this.labelIds = labelIds;
     }
 
-    public Collection<Checklist> getChecklists() {
-        return checklists;
-    }
-
-    public void setChecklists(Collection<Checklist> checklists) {
-        this.checklists = checklists;
-    }
-
-    public Collection<Attachment> getAttachments() {
-        return attachments;
-    }
-
-    public void setAttachments(Collection<Attachment> attachments) {
-        this.attachments = attachments;
-    }
-
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
