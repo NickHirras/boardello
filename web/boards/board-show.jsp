@@ -1,8 +1,7 @@
-
 <div class="row">
     <div class="col-xs-12">
         <h3 style="color: black;">
-            Welcome Board            
+            {{board.board.name}} 
             <span class="glyphicon glyphicon-star-empty" style="margin-left: 2em; font-size: 10pt;"></span>
             <span style="margin-left: 1.5em; font-size: 10pt;"><span class="glyphicon glyphicon-lock"></span> Private</span>            
         </h3>

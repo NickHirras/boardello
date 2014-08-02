@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en" ng-app="boardello">
+<html lang="en" ng-app="boardello" ng-controller="AppController">
 <head>
     <base href="<%=request.getContextPath()%>/app/">
     <meta charset="utf-8">
@@ -44,7 +44,17 @@
                   </div><!-- /input-group -->
             </form>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#" title="Add a new board"><span class="glyphicon glyphicon-plus"></span></a></li>
+              <li class="dropdown" id="newBoardDropdown">
+                  <a href="#" class="dropdown-toggle"  title="Add a new board"><span class="glyphicon glyphicon-plus"></span></a>
+                  <div class="dropdown-menu">
+                    <form class="form" id="newBoardForm" style="margin: 1em;"> 
+                        <label for="boardName">Title</label><br/>
+                        <input name="boardName" id="boardName" type="text" placeholder="Name of new board" ng-model="boardName"><br/>   
+                        <br/>
+                        <button type="button" id="btnLogin" class="btn btn-success" ng-click="createBoard(boardName)">Create board</button>
+                    </form>
+                  </div>
+              </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nicholas Smith <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
