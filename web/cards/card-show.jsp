@@ -5,7 +5,7 @@
             <!-- card -->
             <div class="panel-heading">
                 <span class="h4"><span class="glyphicon glyphicon-tasks" style="margin-right: 1em;"></span>{{card.card.name}}</span>
-                <a href="b/{{card.board.id}}/{{card.board.slug}}"><span class="glyphicon glyphicon-remove pull-right"></span></a>
+                <a href="b/{{card.board.id}}/{{card.board.slug}}" class="unlink"><span class="glyphicon glyphicon-remove pull-right"></span></a>
             </div>
             <div class="panel-body">
 

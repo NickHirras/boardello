@@ -11,13 +11,14 @@
     <!-- Bootstrap -->
     <link href="<%=request.getContextPath()%>/lib/bootstrap-3.2.0-dist/css/bootstrap-cerulean.min.css" rel="stylesheet">
 
+    <link href="<%=request.getContextPath()%>/app.css" rel="stylesheet">
+    <link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" >
+    
     <!--[if lt IE 9]>
           <script src="<%=request.getContextPath()%>/lib/html5shiv-3.7.0/html5shiv.js"></script>
           <script src="<%=request.getContextPath()%>/lib/respond.js-1.4.2/respond.min.js"></script>
         <![endif]-->
 
-    <link href="<%=request.getContextPath()%>/app.css" rel="stylesheet">
-    <link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" >
 </head>
 <body>
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -85,7 +86,7 @@
 
 
     <script src="<%=request.getContextPath()%>/lib/jquery-1.11.1/jquery.min.js"></script>
-    <script src="<%=request.getContextPath()%>/lib/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+    <!-- Don't need it, including ui-bootstrap below... script src="<%=request.getContextPath()%>/lib/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script-->
     <script src="<%=request.getContextPath()%>/lib/angular-1.2.20/angular.js"></script>
     <script src="<%=request.getContextPath()%>/lib/angular-1.2.20/angular-route.js"></script>
     <script src="<%=request.getContextPath()%>/lib/angular-1.2.20/angular-resource.js"></script>

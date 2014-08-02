@@ -16,8 +16,23 @@
         <div class="panel panel-default">
             <div class="panel-heading">
               <div class="panel-title">                    
-                  {{deck.name}}
-                  <span class="pull-right glyphicon glyphicon-chevron-down"></span>
+                  {{deck.name}}                  
+                    <div class="dropdown pull-right">
+                      <a class="dropdown-toggle unlink" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Add Card&#8230;</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Copy List&#8230;</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Move List&#8230;</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Subscribe</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Move All Cards in This List&#8230;</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Archive All Cards in This List&#8230;</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Archive This List</a></li>
+                      </ul>
+                    </div>                                    
               </div>            
             </div>
             <div class="deck panel-body">                
