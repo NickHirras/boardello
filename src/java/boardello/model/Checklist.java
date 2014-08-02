@@ -27,10 +27,7 @@ public class Checklist implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    private Card card;
-    @OneToMany(mappedBy = "checklist")
-    private Collection<ChecklistItem> items;
+    private long cardId;
     private String name;    
     private long position;
 
@@ -40,22 +37,6 @@ public class Checklist implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Card getCard() {
-        return card;
-    }
-
-    public void setCard(Card card) {
-        this.card = card;
-    }
-
-    public Collection<ChecklistItem> getItems() {
-        return items;
-    }
-
-    public void setItems(Collection<ChecklistItem> items) {
-        this.items = items;
     }
 
     public String getName() {
@@ -73,6 +54,16 @@ public class Checklist implements Serializable {
     public void setPosition(long position) {
         this.position = position;
     }
+
+    public long getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(long cardId) {
+        this.cardId = cardId;
+    }
+    
+    
 
     
     @Override

@@ -10,6 +10,10 @@ import boardello.http.EntityManagerUtil;
 import boardello.http.UserService;
 import boardello.model.Account;
 import boardello.model.Board;
+import boardello.model.Card;
+import boardello.model.Deck;
+import boardello.model.Label;
+import boardello.service.dto.BoardContents;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
@@ -34,25 +38,6 @@ public class BoardService {
     @Context HttpServletResponse response;
             
     
-//    @GET
-//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public List<Board> list() {
-//        
-//        Account currentUser = UserService.getCurrentUser(request.getSession());
-//        
-//        if(currentUser == null) {
-//            throw new NotAuthorizedException(response);
-//        }
-//        
-//        EntityManager em = EntityManagerUtil.getEntityManager();
-//        return em.createQuery(
-//                "select b from Board b where b.account = :account", 
-//                Board.class)
-//                .setParameter("account", currentUser)
-//                .getResultList();
-//    
-//    }
-    
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Board> list() {
@@ -65,19 +50,18 @@ public class BoardService {
         
         EntityManager em = EntityManagerUtil.getEntityManager();
         return em.createQuery(
-                "select new boardello.model.Board(b.id, b.name, b.slug, b.lastActivityAt, b.lastViewedAt) from Board as b where b.account = :account", 
+                "select b from Board b where b.accountId = :accountId", 
                 Board.class)
-                .setParameter("account", currentUser)
+                .setParameter("accountId", currentUser.getId())
                 .getResultList();
-        
-        
     
     }
+
 
     @GET
     @Path("{boardId}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Board get(@PathParam("boardId") Long boardId) {
+    public BoardContents get(@PathParam("boardId") Long boardId) {
         Account currentUser = UserService.getCurrentUser(request.getSession());
         
         if(currentUser == null) {
@@ -85,7 +69,26 @@ public class BoardService {
         }
  
         EntityManager em = EntityManagerUtil.getEntityManager();
-        return em.find(Board.class, boardId);
+        
+        BoardContents data = new BoardContents();
+        
+        data.setAccount(em.find(Account.class, currentUser.getId()));
+        data.setBoard(em.find(Board.class, boardId));
+        data.setLabels(em.createQuery("select label from Label label where label.boardId = :boardId", Label.class)                   
+                        .setParameter("boardId", data.getBoard().getId()).getResultList());
+        data.setDecks(em.createQuery("select deck from Deck deck where deck.boardId = :boardId", Deck.class)
+                        .setParameter("boardId", data.getBoard().getId()).getResultList());
+        for(Deck deck : data.getDecks()) {
+            List<Card> cards = em.createQuery("select card from Card card where card.deckId = :deckId", Card.class)
+                .setParameter("deckId", deck.getId()).getResultList();
+                    
+            if(data.getCards() == null) {
+                data.setCards(cards);
+            } else {
+                data.getCards().addAll(cards);
+            }            
+        }
+        return data;
         
     }
     

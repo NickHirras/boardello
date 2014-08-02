@@ -11,6 +11,8 @@
 </div>
     
 <div class="row">
+
+    <!-- Deck of Cards -->
     <div class="col-sm-6 col-md-3" ng-repeat="deck in board.decks | orderBy:'position'">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -22,8 +24,13 @@
             <div class="deck panel-body">                
 
                 <!-- card -->                
-                <div class="card panel panel-default clickable" ng-repeat="card in deck.cards | filter:{listId: list.id} | orderBy: 'position'">
-                    <span ng-repeat="label in card.labels" style="color: {{label.color}}; float: left; margin-top: -2px;" class="glyphicon glyphicon-bookmark"></span>
+
+                <div class="panel panel-default clickable" ng-repeat="card in board.cards | filter:{deckId: deck.id} | orderBy: 'position'">                              
+                    <!-- colored labels -->
+                    <span ng-repeat="labelId in card.labelIds">
+                        <span ng-repeat="label in board.labels | filter:{id:labelId}" style="color: {{label.color}}; float: left; margin-top: -2px;" class="glyphicon glyphicon-bookmark"></span>
+                    </span>
+                    <!-- card content -->
                     <a href="c/{{card.id}}/{{card.slug}}" class="unlink">
                         <div class="panel-body">
                             {{card.name}}

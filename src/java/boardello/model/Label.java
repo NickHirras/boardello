@@ -26,8 +26,7 @@ public class Label implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    private Board board;
+    private long boardId;
     private String name;
     private String color;
 
@@ -39,15 +38,15 @@ public class Label implements Serializable {
         this.id = id;
     }
 
-    @XmlTransient
-    public Board getBoard() {
-        return board;
+    public long getBoardId() {
+        return boardId;
     }
 
-    public void setBoard(Board board) {
-        this.board = board;
+    public void setBoardId(long boardId) {
+        this.boardId = boardId;
     }
 
+    
     public String getName() {
         return name;
     }
