@@ -51,10 +51,25 @@
                         </div>
                     </a>
                 </div>
-                <!-- /card -->
+                <!-- /card --> 
+
+                <!-- new card form -->
+                <div class="panel panel-default clickable" ng-show="newCard.deckId === deck.id">                              
+                    <div class="panel-body">
+                        <form role="form">
+                          <div class="form-group">
+                              <textarea type="text" class="form-control" ng-model="newCard.description"></textarea>
+                          </div>
+                          <button type="submit" class="btn btn-success" ng-click="createCard()">Save</button>
+                          <button type="reset" ng-click="hideNewCardForm()" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button>
+                        </form>        
+                    </div>
+                </div>                
+                <!-- /new card form -->
                 
             </div>            
-            <a>
+            
+            <a ng-click="showNewCardForm(deck.id)" ng-hide="newCard.deckId === deck.id">
                 <div class="panel-footer">
                     Add a card...
                 </div>
@@ -62,8 +77,17 @@
         </div>
     </div>
     <div class="col-sm-6 col-md-3">
-        <div class="btn-group btn-group-justified">
-            <a class="btn btn-default">Add a list...</a>
+        <button class="btn btn-default" style="width: 100%;" ng-hide="creatingList == true" ng-click="creatingList = true;">Add a list&hellip;</button>
+        <div class="panel panel-default" ng-show="creatingList == true">
+            <div class="panel-body">
+                <form role="form">
+                  <div class="form-group">
+                      <input type="text" class="form-control" id="newListName" placeholder="Title&hellip;" required ng-model="listName">
+                  </div>
+                  <button type="submit" class="btn btn-success" ng-click="createDeck(listName); creatingList = false; listName = '';">Save</button>
+                  <button type="reset" ng-click="creatingList = false" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></button>
+                </form>        
+            </div>
         </div>
     </div>
 </div>

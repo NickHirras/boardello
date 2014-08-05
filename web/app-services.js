@@ -15,3 +15,11 @@ angular.module("boardello").factory('CardApi', ['$resource',
     }
 ]);
 
+angular.module("boardello").factory('DeckApi', ['$resource', 
+    function($resource) {
+        return $resource('../api/decks/:deckId', {}, {
+          
+        });
+    }
+]);
+

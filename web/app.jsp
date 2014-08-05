@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Boardello</title>
+    <title>Boardello!</title>
 
     <!-- Bootstrap -->
     <link href="<%=request.getContextPath()%>/lib/bootstrap-3.2.0-dist/css/bootstrap-cerulean.min.css" rel="stylesheet">
@@ -66,7 +66,7 @@
                   <li><a href="#">Help</a></li>
                   <li><a href="#">Apps</a></li>
                   <li><a href="#">Shortcuts</a></li>
-                  <li><a href="#">Share Trello</a></li>
+                  <li><a href="#">Share Boardello!</a></li>
                   <li class="divider"></li>
                   <li><a href="<%=request.getContextPath()%>/logout">Log Out</a></li>
                 </ul>

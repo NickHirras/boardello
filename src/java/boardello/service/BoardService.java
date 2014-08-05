@@ -111,7 +111,7 @@ public class BoardService {
         EntityTransaction tx = em.getTransaction();
         
         board.setAccountId(currentUser.getId());
-        board.setSlug(SlugUtil.create(board.getName()));
+        board.setSlug(ContentUtils.createSlug(board.getName()));
         
         try {
             tx.begin();
