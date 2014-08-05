@@ -47,8 +47,8 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown" id="newBoardDropdown">
                   <a href="#" class="dropdown-toggle"  title="Add a new board"><span class="glyphicon glyphicon-plus"></span></a>
-                  <div class="dropdown-menu">
-                    <form class="form" id="newBoardForm" style="margin: 1em;"> 
+                  <div class="dropdown-menu" ng-click="$event.stopPropagation();">
+                    <form class="form" id="newBoardForm" style="margin: 1em;">                         
                         <label for="boardName">Title</label><br/>
                         <input name="boardName" id="boardName" type="text" placeholder="Name of new board" ng-model="boardName"><br/>   
                         <br/>
