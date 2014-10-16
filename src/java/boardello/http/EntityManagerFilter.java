@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package boardello.http;
 
 import java.io.IOException;
@@ -13,68 +12,67 @@ import javax.persistence.Persistence;
 import javax.servlet.*;
 
 /**
- * 
  *
- * 
+ *
+ *
  * @author Prasobh.K
  */
-
 public class EntityManagerFilter implements Filter {
 
-	private static EntityManagerFactory entityManagerFactory = null;
+  private static EntityManagerFactory entityManagerFactory = null;
 
-	@Override
-	public void init(FilterConfig fc) throws ServletException {
+  @Override
+  public void init(FilterConfig fc) throws ServletException {
 
-		destroy();
+    destroy();
 
-		entityManagerFactory = Persistence.createEntityManagerFactory("boardelloPU");
+    entityManagerFactory = Persistence.createEntityManagerFactory("boardelloPU");
 
-	}
+  }
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain chain) throws IOException, ServletException {
+  @Override
+  public void doFilter(ServletRequest request, ServletResponse response,
+          FilterChain chain) throws IOException, ServletException {
 
-		EntityManager em = null;
+    EntityManager em = null;
 
-		try {
+    try {
 
-			em = entityManagerFactory.createEntityManager();
+      em = entityManagerFactory.createEntityManager();
 
-			EntityManagerUtil.ENTITY_MANAGERS.set(em);
+      EntityManagerUtil.ENTITY_MANAGERS.set(em);
 
-			chain.doFilter(request, response);
+      chain.doFilter(request, response);
 
-			EntityManagerUtil.ENTITY_MANAGERS.remove();
+      EntityManagerUtil.ENTITY_MANAGERS.remove();
 
-		} finally {
+    } finally {
 
-			try {
+      try {
 
-				if (em != null) {
+        if (em != null) {
 
-					em.close();
+          em.close();
 
-				}
+        }
 
-			} catch (Throwable t) {
+      } catch (Throwable t) {
 
-				System.out.println("Error " + t);
+        System.out.println("Error " + t);
 
-			}
-		}
-	}
+      }
+    }
+  }
 
-	@Override
-	public void destroy() {
+  @Override
+  public void destroy() {
 
-		{
+    {
 
-			if (entityManagerFactory != null) {
+      if (entityManagerFactory != null) {
 
-				entityManagerFactory.close();
-			}
-		}
-	}
+        entityManagerFactory.close();
+      }
+    }
+  }
 }

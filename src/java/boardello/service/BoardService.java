@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package boardello.service;
 
 import boardello.http.EntityManagerUtil;
@@ -33,97 +32,95 @@ import javax.ws.rs.core.MediaType;
  *
  * @author nicholas.e.smith
  */
-
 @Path("boards")
 public class BoardService {
-    
-    @Context HttpServletRequest request;
-    @Context HttpServletResponse response;
-            
-    
-    @GET
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Board> list() {
-        
-        Account currentUser = UserService.getCurrentUser(request.getSession());
-        
-        if(currentUser == null) {
-            throw new NotAuthorizedException(response);
-        }
-        
-        EntityManager em = EntityManagerUtil.getEntityManager();
-        return em.createQuery(
-                "select b from Board b where b.accountId = :accountId", 
-                Board.class)
-                .setParameter("accountId", currentUser.getId())
-                .getResultList();
-    
+
+  @Context
+  HttpServletRequest request;
+  @Context
+  HttpServletResponse response;
+
+  @GET
+  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  public List<Board> list() {
+
+    Account currentUser = UserService.getCurrentUser(request.getSession());
+
+    if (currentUser == null) {
+      throw new NotAuthorizedException(response);
     }
 
+    EntityManager em = EntityManagerUtil.getEntityManager();
+    return em.createQuery(
+            "select b from Board b where b.accountId = :accountId",
+            Board.class)
+            .setParameter("accountId", currentUser.getId())
+            .getResultList();
 
-    @GET
-    @Path("{boardId}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public BoardContents get(@PathParam("boardId") Long boardId) {
-        Account currentUser = UserService.getCurrentUser(request.getSession());
-        
-        if(currentUser == null) {
-            throw new NotAuthorizedException(response);
-        }
- 
-        EntityManager em = EntityManagerUtil.getEntityManager();
-        
-        BoardContents data = new BoardContents();
-        
-        data.setAccount(em.find(Account.class, currentUser.getId()));
-        data.setBoard(em.find(Board.class, boardId));
-        data.setLabels(em.createQuery("select label from Label label where label.boardId = :boardId", Label.class)                   
-                        .setParameter("boardId", data.getBoard().getId()).getResultList());
-        data.setDecks(em.createQuery("select deck from Deck deck where deck.boardId = :boardId", Deck.class)
-                        .setParameter("boardId", data.getBoard().getId()).getResultList());
-        for(Deck deck : data.getDecks()) {
-            List<Card> cards = em.createQuery("select card from Card card where card.deckId = :deckId", Card.class)
-                .setParameter("deckId", deck.getId()).getResultList();
-                    
-            if(data.getCards() == null) {
-                data.setCards(cards);
-            } else {
-                data.getCards().addAll(cards);
-            }            
-        }
-        return data;
-        
+  }
+
+  @GET
+  @Path("{boardId}")
+  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  public BoardContents get(@PathParam("boardId") Long boardId) {
+    Account currentUser = UserService.getCurrentUser(request.getSession());
+
+    if (currentUser == null) {
+      throw new NotAuthorizedException(response);
     }
-    
-    @POST
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Board create(Board board) {
-        
-        Account currentUser = UserService.getCurrentUser(request.getSession());
-        
-        if(currentUser == null) {
-            throw new NotAuthorizedException(response);
-        }
- 
-        
-        EntityManager em = EntityManagerUtil.getEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        
-        board.setAccountId(currentUser.getId());
-        board.setSlug(ContentUtils.createSlug(board.getName()));
-        
-        try {
-            tx.begin();
-            em.persist(board);
-            tx.commit();
-        } catch(Exception e) {
-            tx.rollback();
-            throw e;
-        }
-        
-        return board;
-        
+
+    EntityManager em = EntityManagerUtil.getEntityManager();
+
+    BoardContents data = new BoardContents();
+
+    data.setAccount(em.find(Account.class, currentUser.getId()));
+    data.setBoard(em.find(Board.class, boardId));
+    data.setLabels(em.createQuery("select label from Label label where label.boardId = :boardId", Label.class)
+            .setParameter("boardId", data.getBoard().getId()).getResultList());
+    data.setDecks(em.createQuery("select deck from Deck deck where deck.boardId = :boardId", Deck.class)
+            .setParameter("boardId", data.getBoard().getId()).getResultList());
+    for (Deck deck : data.getDecks()) {
+      List<Card> cards = em.createQuery("select card from Card card where card.deckId = :deckId", Card.class)
+              .setParameter("deckId", deck.getId()).getResultList();
+
+      if (data.getCards() == null) {
+        data.setCards(cards);
+      } else {
+        data.getCards().addAll(cards);
+      }
     }
-    
+    return data;
+
+  }
+
+  @POST
+  @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  public Board create(Board board) {
+
+    Account currentUser = UserService.getCurrentUser(request.getSession());
+
+    if (currentUser == null) {
+      throw new NotAuthorizedException(response);
+    }
+
+    EntityManager em = EntityManagerUtil.getEntityManager();
+    EntityTransaction tx = em.getTransaction();
+
+    board.setAccountId(currentUser.getId());
+    board.setSlug(ContentUtils.createSlug(board.getName()));
+
+    try {
+      tx.begin();
+      em.persist(board);
+      tx.commit();
+    } catch (Exception e) {
+      tx.rollback();
+      throw e;
+    }
+
+    return board;
+
+  }
+
 }

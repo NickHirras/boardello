@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package boardello.service;
 
 import boardello.http.EntityManagerUtil;
@@ -31,60 +30,61 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("decks")
 public class DeckService {
-    @Context HttpServletRequest request;
-    @Context HttpServletResponse response;
 
-    @POST
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Deck create(Deck deck) {
-        
-        Account currentUser = UserService.getCurrentUser(request.getSession());
-        
-        if(currentUser == null) {
-            throw new NotAuthorizedException(response);
-        }
- 
-        
-        EntityManager em = EntityManagerUtil.getEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        
-        // Make sure board we're asked to attach to belongs to logged-in user.
-        Board board = em.find(Board.class, deck.getBoardId()); 
-        
-        if(board.getAccountId() != currentUser.getId()) {
-            throw new NotAllowedException("User not allowed to add a deck to the requested board.");
-        }
-        
-        // Now find out what position we should initialize this to
-        long nextPosition;
-        try {
-            nextPosition = em.createQuery(
-                    "select max(d.position)+1 from Deck d where d.boardId = :boardId", Long.class)
-                    .setParameter("boardId", board.getId())
-                    .getSingleResult();
-        } catch(Exception e) {
-            nextPosition = 1L;
-        }
-        
-        // Wrap if necessary
-        if(nextPosition == Long.MAX_VALUE) {
-            nextPosition = Long.MIN_VALUE;
-        }
-        
-        deck.setPosition(nextPosition);
-        
-        try {
-            tx.begin();
-            em.persist(deck);
-            tx.commit();
-        } catch(Exception e) {
-            tx.rollback();
-            throw e;
-        }
-        
-        return deck;
+  @Context
+  HttpServletRequest request;
+  @Context
+  HttpServletResponse response;
+
+  @POST
+  @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+  public Deck create(Deck deck) {
+
+    Account currentUser = UserService.getCurrentUser(request.getSession());
+
+    if (currentUser == null) {
+      throw new NotAuthorizedException(response);
     }
-    
-    
+
+    EntityManager em = EntityManagerUtil.getEntityManager();
+    EntityTransaction tx = em.getTransaction();
+
+    // Make sure board we're asked to attach to belongs to logged-in user.
+    Board board = em.find(Board.class, deck.getBoardId());
+
+    if (board.getAccountId() != currentUser.getId()) {
+      throw new NotAllowedException("User not allowed to add a deck to the requested board.");
+    }
+
+    // Now find out what position we should initialize this to
+    long nextPosition;
+    try {
+      nextPosition = em.createQuery(
+              "select max(d.position)+1 from Deck d where d.boardId = :boardId", Long.class)
+              .setParameter("boardId", board.getId())
+              .getSingleResult();
+    } catch (Exception e) {
+      nextPosition = 1L;
+    }
+
+    // Wrap if necessary
+    if (nextPosition == Long.MAX_VALUE) {
+      nextPosition = Long.MIN_VALUE;
+    }
+
+    deck.setPosition(nextPosition);
+
+    try {
+      tx.begin();
+      em.persist(deck);
+      tx.commit();
+    } catch (Exception e) {
+      tx.rollback();
+      throw e;
+    }
+
+    return deck;
+  }
+
 }

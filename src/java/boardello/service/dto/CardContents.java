@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package boardello.service.dto;
 
 import boardello.model.Board;
@@ -21,72 +20,73 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class CardContents {
-    private Board board;
-    private Deck deck;
-    private Card card;
-    private List<Label> labels;
-    private List<Checklist> checklists;
-    private List<ChecklistItem> checklistItems;
-    
-    public CardContents() {
-        
-    }
-    
-    public CardContents(Board board, Deck deck, Card card, List<Label> labels, List<Checklist> checklists, List<ChecklistItem> checklistItems) {
-        this.board = board;
-        this.deck = deck;
-        this.card = card;
-        this.labels = labels;
-        this.checklists = checklists;
-        this.checklistItems = checklistItems;
-    }
 
-    public Board getBoard() {
-        return board;
-    }
+  private Board board;
+  private Deck deck;
+  private Card card;
+  private List<Label> labels;
+  private List<Checklist> checklists;
+  private List<ChecklistItem> checklistItems;
 
-    public void setBoard(Board board) {
-        this.board = board;
-    }
+  public CardContents() {
 
-    public Deck getDeck() {
-        return deck;
-    }
+  }
 
-    public void setDeck(Deck deck) {
-        this.deck = deck;
-    }
+  public CardContents(Board board, Deck deck, Card card, List<Label> labels, List<Checklist> checklists, List<ChecklistItem> checklistItems) {
+    this.board = board;
+    this.deck = deck;
+    this.card = card;
+    this.labels = labels;
+    this.checklists = checklists;
+    this.checklistItems = checklistItems;
+  }
 
-    public Card getCard() {
-        return card;
-    }
+  public Board getBoard() {
+    return board;
+  }
 
-    public void setCard(Card card) {
-        this.card = card;
-    }
+  public void setBoard(Board board) {
+    this.board = board;
+  }
 
-    public List<Label> getLabels() {
-        return labels;
-    }
+  public Deck getDeck() {
+    return deck;
+  }
 
-    public void setLabels(List<Label> labels) {
-        this.labels = labels;
-    }
+  public void setDeck(Deck deck) {
+    this.deck = deck;
+  }
 
-    public List<Checklist> getChecklists() {
-        return checklists;
-    }
+  public Card getCard() {
+    return card;
+  }
 
-    public void setChecklists(List<Checklist> checklists) {
-        this.checklists = checklists;
-    }
+  public void setCard(Card card) {
+    this.card = card;
+  }
 
-    public List<ChecklistItem> getChecklistItems() {
-        return checklistItems;
-    }
+  public List<Label> getLabels() {
+    return labels;
+  }
 
-    public void setChecklistItems(List<ChecklistItem> checklistItems) {
-        this.checklistItems = checklistItems;
-    }
-         
+  public void setLabels(List<Label> labels) {
+    this.labels = labels;
+  }
+
+  public List<Checklist> getChecklists() {
+    return checklists;
+  }
+
+  public void setChecklists(List<Checklist> checklists) {
+    this.checklists = checklists;
+  }
+
+  public List<ChecklistItem> getChecklistItems() {
+    return checklistItems;
+  }
+
+  public void setChecklistItems(List<ChecklistItem> checklistItems) {
+    this.checklistItems = checklistItems;
+  }
+
 }

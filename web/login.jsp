@@ -52,25 +52,25 @@
       <script src="<%=request.getContextPath()%>/lib/respond.js-1.4.2/respond.min.js"></script>
     <![endif]-->
 
- 	<link href="<%=request.getContextPath()%>/login.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/login.css" rel="stylesheet">
 
   </head>  
   <body>
 
-	<div class="container">
-            <% if(error != null && error.length() > 0) { %>
-                <div class="alert alert-danger">
-                    <%= error %>
-                </div>
-            <% } %>
-	  <form class="form-signin" role="form" method="POST">
-	    <h2 class="form-signin-heading">Please sign in</h2>
-	    <input name="email" type="email" value="<%= email == null ? "" : email %>" class="form-control" placeholder="Email address" required autofocus>
-	    <input name="password" type="password" value="<%= password == null ? "" : password %>" class="form-control" placeholder="Password" required>
-	    <button name="signIn" value="signIn" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-	  </form>
-	
-	</div> <!-- /container -->    
+    <div class="container">
+      <% if(error != null && error.length() > 0) { %>
+      <div class="alert alert-danger">
+        <%= error %>
+      </div>
+      <% } %>
+      <form class="form-signin" role="form" method="POST">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input name="email" type="email" value="<%= email == null ? "" : email %>" class="form-control" placeholder="Email address" required autofocus>
+        <input name="password" type="password" value="<%= password == null ? "" : password %>" class="form-control" placeholder="Password" required>
+        <button name="signIn" value="signIn" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->    
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="<%=request.getContextPath()%>/lib/jquery-1.11.1/jquery.min.js"></script>

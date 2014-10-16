@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package boardello.service.dto;
 
 import boardello.model.Account;
@@ -20,63 +19,63 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class BoardContents {
-    private Account account;
-    private Board board;
-    private List<Label> labels;
-    private List<Deck> decks;
-    private List<Card> cards;
 
-    public BoardContents() {
-        
-    }
-    
-    public BoardContents(Account account, Deck deck, Board board, List<Label> labels, List<Deck> decks, List<Card> cards) {
-        this.account = account;
-        this.board = board;
-        this.labels = labels;
-        this.decks = decks;
-        this.cards = cards;
-    }
+  private Account account;
+  private Board board;
+  private List<Label> labels;
+  private List<Deck> decks;
+  private List<Card> cards;
 
-    public Account getAccount() {
-        return account;
-    }
+  public BoardContents() {
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+  }
 
-    public List<Label> getLabels() {
-        return labels;
-    }
+  public BoardContents(Account account, Deck deck, Board board, List<Label> labels, List<Deck> decks, List<Card> cards) {
+    this.account = account;
+    this.board = board;
+    this.labels = labels;
+    this.decks = decks;
+    this.cards = cards;
+  }
 
-    public void setLabels(List<Label> labels) {
-        this.labels = labels;
-    }
+  public Account getAccount() {
+    return account;
+  }
 
-    public List<Deck> getDecks() {
-        return decks;
-    }
+  public void setAccount(Account account) {
+    this.account = account;
+  }
 
-    public void setDecks(List<Deck> decks) {
-        this.decks = decks;
-    }
-    
-    public Board getBoard() {
-        return board;
-    }
+  public List<Label> getLabels() {
+    return labels;
+  }
 
-    public void setBoard(Board board) {
-        this.board = board;
-    }
+  public void setLabels(List<Label> labels) {
+    this.labels = labels;
+  }
 
-    public List<Card> getCards() {
-        return cards;
-    }
+  public List<Deck> getDecks() {
+    return decks;
+  }
 
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
-    }
-    
-    
+  public void setDecks(List<Deck> decks) {
+    this.decks = decks;
+  }
+
+  public Board getBoard() {
+    return board;
+  }
+
+  public void setBoard(Board board) {
+    this.board = board;
+  }
+
+  public List<Card> getCards() {
+    return cards;
+  }
+
+  public void setCards(List<Card> cards) {
+    this.cards = cards;
+  }
+
 }
